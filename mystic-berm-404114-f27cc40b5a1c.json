@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "mystic-berm-404114",
+  "private_key_id": "f27cc40b5a1c921ddef5b4aea2eb38672b4c2313",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC+S8CqoiZaG2oG\nuyajur0PIbVyhB4Wvv2BSzO4ITdpI1DnqugWAJjfSfB9G3FBNE+hdZ6jwnMEJw96\nDfoYgDNuEBxzItknBaHOiaH8vGzYllJ/Obayv2KGUnN08d1PbgWeK8P37dV23545\nsCybL4j5/bfiF8MT4SE2X8Gwbm0Wv9JAfEQEHe/BG8kjKgH45zkxIVI4NJar9HFN\nGA1wYtfJyvFaBnpol0ZKd4I59ynVXKmmwU+DW/hSHGPq20PkrcuuWTbJr/wYZBQz\nmb0h47p/B0z/7vLXKkZrgwPBR52NtOUwL3tc7+F41XO88zBfcX0kKJRSHZJzDFDg\nnpFCCNerAgMBAAECggEAB1mxJlPayaunsn0l2O91m77gb+rMzHHWbX3LR1cu1L1i\nw8bppJ2jkyobZ/CPa+sPEYDvR8HAv5KZh5Vk6V1cnzKUr+JlR8ADXtpiHR/lhrOa\nB5bh9pD97B28Vak0RqCV4mUHhMisJ0or7v6Cg7dzeL2uaTL/e7iFTsDvjcR/T+4l\niVj+SZ23eNwjy+EDqz4lBR3FlO5o2Cf7AOzykl5OHv4l53GNuxbe+eE1COZJsWhC\n9Dn86bQj11GWFngKyfSJeNZCSNtNxSyxzwPujphDqI+60LoYaW3c1f9p8tyufuwt\nyt6YNZ064vthnGtfbUgDtR2km+v3x9DQTwv032A0AQKBgQDe5jmUcwXbuUp2W7V7\nmgeYwtsYlq0pxwXGq/CnuOwReYEJEWyuxZ+sEmj69T4FDp9/aIfTg9SMyh3+vpUR\nzCu2cZidanNikmh2TCXf8FlGPA6ZDGWEAnmJZxqkmaBlh5Ce5wamkhYeRC2uIIQq\nUkYD+hv9crqP5I6D0pUns5/a6wKBgQDajhJL6Gk3xZME/q0WS0YAB1xfuo1QQs/V\nw16FG1kjR03raqKEqnn+dnL1Mu9u5CDtkwUDbRqQoMGEmptdAOIgXfMi/xctLj4s\n9VGrAmO9VmRsteaWWRVZWO0O1LFeJWxhFHnE/sWaChFKT+GETzhRWYeeV6SDgMsb\nxqRZgEJGQQKBgH/RS2F6F/jopu96JXasXADYdCUEemYDj6def5DeNNjMcRcPG+CY\nyLg2kmaebSMfQI0iFwlOhnr5h/vFs9vR1Zs4Rsi1+1aiGC8F+Y4R2E+zLrfK6Qer\nF6CYNCoBQn4WH/NPDXxFN1PByuQYF1Hhfe7X5GcQ/DR5XtPu1MNAeMFjAoGACH9F\njtX2YUi5MpSEPj2m9xFSMhaar+gpFHKIFjy99nUrPl/i+a13GMGaLpZQYMtVzGbO\n5xcy1TSq0XEBYVhLcl60uUOZrxQBLtZK2o85OX9GYEOiN243OkYO0WjLjJF/6TZW\nlaYiIJ8LlQwOBIrf8am9cBaQOtyjCO1sLl6iNQECgYEAwpf+Phbut4szbgv8P9Fh\nbSUdXUGtk4DkVCOut/9mVqYwDvqVUr3ey1Ly8cSmMlzs8wbBAflrEIP7IkBGCntZ\nzl2a51mfmYIMTx2d7YcplDvtbN+gXYkgRBkH/ihrOOVCO68/UUM82XG7kxiovaQh\nXY7X05kzOPROk34Iu1/Xl6E=\n-----END PRIVATE KEY-----\n",
+  "client_email": "googledriveapi@mystic-berm-404114.iam.gserviceaccount.com",
+  "client_id": "117902418280080136908",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/googledriveapi%40mystic-berm-404114.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
