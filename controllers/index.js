@@ -4,6 +4,7 @@ import { JWT } from "google-auth-library";
 
 // File handling package
 import fs from "fs";
+import { request } from "http";
 
 // spreadsheet key is the long id in the sheets URL
 const RESPONSES_SHEET_ID = "1W1A87swNCtM9O8yIioWLQAOa_Vdl7XxuhSou_Pgh81g";
@@ -44,35 +45,97 @@ export const addGoogleSheetData = async function (req, res) {
   //   password: "Sergey123",
   // };
 
-  const { user_name, email, password } = req.body;
+  // const { user_name, email, password } = req.body;
+  const {
+    PhysicianID,
+    PatientID,
+    first_name,
+    last_name,
+    Location,
+    Age,
+    Gender,
+    Phone,
+    Address,
+    Dose,
+    Prescription,
+    Visit_Date,
+    Next_Visit,
+    Physician_first_name,
+    Physician_last_name,
+    Physician_Number,
+    Bill
+} = req.body
 
   await doc.loadInfo();
-  let sheet = doc.sheetsByIndex[0];
+  let appointment = doc.sheetsByIndex[0];
+  let prescribes = doc.sheetsByIndex[1];
+  let patient = doc.sheetsByIndex[2];
+  let phisician = doc.sheetsByIndex[3];
+  let medication = doc.sheetsByIndex[4];
+  // const newSheet = await doc.addSheet({ title: 'patients' });
 
-  await sheet.setHeaderRow(["email", "user_name", "password"]);
+  await appointment.setHeaderRow(["appointmentID", "patientID", "physicianID","start_dt_time","next_dt_time"]);
+  await prescribes.setHeaderRow(["physician", "PatientID", "description","dose"]);
+  await patient.setHeaderRow(["ssn", "first_name", "last_name","address","location","email","phone","pcp"]);
+  await phisician.setHeaderRow(["employeeid", "name", "position","phone"]);
+  // await medication.setHeaderRow(["email", "user_name", "password"]);
+  let appointmentRows = await appointment.getRows();
 
-  await sheet.addRow({ user_name, email, password });
+  let appId 
 
-  res.status(200).send("data added sucessfully");
+  if(appointmentRows[appointmentRows.length-1]._rowNumber <10){
+    appId =`emp000${appointmentRows[appointmentRows.length-1]._rowNumber}`
+  }else if(appointmentRows[appointmentRows.length-1]._rowNumber<100){
+    appId =`emp00${appointmentRows[appointmentRows.length-1]._rowNumber}`
+  }else if(appointmentRows[appointmentRows.length-1]._rowNumber < 1000){
+    appId =`emp0${appointmentRows[appointmentRows.length-1]._rowNumber}`
+  }else {
+    appId = `emp${appointmentRows[appointmentRows.length-1]._rowNumber}`
+  }
+
+  console.log(appointmentRows[appointmentRows.length-1],appId);
+  await appointment.addRow({ appointmentID:appId ,"patientID":PatientID,"physicianID" :PhysicianID, "start_dt_time":Visit_Date,"next_dt_time":Next_Visit });
+  await prescribes.addRow({"physician":PhysicianID,"PatientID":PatientID,"description":Prescription,"dose":Dose,Bill})
+  await patient.addRow({ "ssn":"a12kj345","first_name":first_name,"last_name":last_name,"address":Address,"location":Location,"age":Age,"gender":Gender,"phone":Phone });
+  await phisician.addRow({"employeeid":PhysicianID,"name":Physician_first_name,"position":"Sr Doctor","phone":Physician_Number})
+  // await medication.addRow({ email, user_name, password });
+  res.status(200).send({
+    msg: "data added sucessfully",
+    data: { ...req.body},
+  });
 };
 
 export const updateGoogleSheetData = async function (req, res) {
   const { keyval, oldData, newData } = req.body;
 
-  await doc.loadInfo();
+  try {
+    await doc.loadInfo();
 
-  // Index of the sheet
-  let sheet = doc.sheetsByIndex[0];
+    // Index of the sheet
+    let sheet = doc.sheetsByIndex[0];
 
-  let rows = await sheet.getRows();
+    let rows = await sheet.getRows();
 
-  for (let index = 0; index < rows.length; index++) {
-    const row = rows[index];
-    if (row[keyval] === oldValue) {
-      rows[index] = newValue;
-      await rows[index].save();
-      break;
+    for (let index = 0; index < rows.length; index++) {
+      console.log("inside for", rows[index]._rawData[0]);
+      if (rows[index]._rawData[0] === oldData) {
+        console.log("inside if");
+        // rows[index] = newData;
+        rows[index].assign({
+          user_name: newData.user_name,
+          email: newData.email,
+          password: newData.password,
+        });
+        await rows[index].save(); // save updates on a row
+        // rows[index].set('user_name') = newData.user_name;
+        // rows[index].set('email') = newData.email;
+        // rows[index].set('password') = newData.password;
+      }
     }
+
+    res.status(200).send({ msg: "data updated sucessfully", data: newData });
+  } catch (error) {
+    throw new Error(error);
   }
 };
 
@@ -88,11 +151,12 @@ export const deleteGoogleSheetData = async function (req, res) {
 
   for (let index = 0; index < rows.length; index++) {
     const row = rows[index];
-    if (row[key] === value) {
+    if (rows[index]._rawData[0] === value) {
       await rows[index].delete();
       break;
     }
   }
+  res.status(200).send({ msg: `data deleted sucessfully`, data: value });
 };
 
 const getRow = async (email) => {
